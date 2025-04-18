@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request
+from flask import Flask, request, Response
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -36,7 +36,7 @@ def bot():
         reply = f"Error: {str(e)}"
         
     print(f"Replying: {reply}")
-    return reply
+    return Response(f"<Response><Message>{reply}</Message></Response>", mimetype="application/xml")
 
 if __name__ == "__main__":
     from os import environ
